@@ -32,5 +32,16 @@ public class PhoneSteps {
         callPage.verifyOtherNumberInCall(PropertiesHandler.getProgramProperties().getProperty("telephone1"));
     }
 
+    @When("The receiving user hangs up the call")
+    public static void the_receiving_user_hangsup_the_call() {
+        CallPage callPage = new CallPage(Utils.getReceiverDriver());
+        callPage.hangupCall();
+    }
+
+    @Then("The calling user call is terminated and the wrapup call is shown")
+    public static void the_calling_user_can_see_wrapup_on_finalization() {
+        CallPage callPage = new CallPage(Utils.getCallingDriver());
+        callPage.wrapUpMenuAppears();
+    }
 
 }

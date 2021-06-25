@@ -19,6 +19,8 @@ public class CallPage extends BasicPage {
     private final By buttonKeypadCall = By.xpath("//*[@data-test='action-keypad']");
     private final By buttonStartRecordCall = By.xpath("//*[@data-test='action-start-recording']");
 
+    private final By sectionWrapUp = By.xpath("//*[@data-test='call-details-info']");
+    private final By buttonCopyCallID = By.xpath("//*[@data-test='paragraph-text']");
 
 
     public CallPage(WebDriver driver) {
@@ -41,6 +43,14 @@ public class CallPage extends BasicPage {
     public void verifyOtherNumberInCall(String telephoneExpected) {
         Assert.assertTrue(Utils.simplifyPhone(genericGetText(buttonTelephoneContactCall))
                 .equals(Utils.simplifyPhone(telephoneExpected)));
+    }
+
+    public void hangupCall() {
+        twoStepClick(buttonHangupCall);
+    }
+
+    public void wrapUpMenuAppears() {
+        this.wait.until(ExpectedConditions.visibilityOfElementLocated(sectionWrapUp));
     }
 
 
